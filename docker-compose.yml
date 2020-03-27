@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  opendj:
+    image: openidentityplatform/opendj:4.4
+    restart: always
+    ports:
+      - "80:1389"
+      - "443:1636"
+      - "8080:4444"
+    volumes:
+      - opendj:/opt/opendj
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - BASE_DN=dc=arge-oevv,dc=at
+      - ROOT_USER_DN=cn=admin
+      - ROOT_PASSWORD=setrootpassword
+
+volumes:
+  opendj:
